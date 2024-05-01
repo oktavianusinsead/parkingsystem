@@ -155,7 +155,7 @@
                 <?php endif; ?>
 
             <?php endif; ?>
-            <?php if( Gate::check('manage parking zone') || Gate::check('manage vehicle_type') || Gate::check('manage floor')): ?>
+            <?php if( Gate::check('manage parking zone') || Gate::check('manage gatetype') || Gate::check('manage vehicle_type') || Gate::check('manage floor')): ?>
                 <li class="cdxmenu-title">
                     <h5><?php echo e(__('System Setup')); ?></h5>
                 </li>
@@ -167,6 +167,14 @@
                         </a>
                     </li>
                 <?php endif; ?>
+                <?php if(Gate::check('manage gatetype')): ?>
+                <li class="menu-item <?php echo e(in_array($routeName,['gate-type.index'])?'active':''); ?>">
+                    <a href="<?php echo e(route('gate-type.index')); ?>">
+                        <div class="icon-item"><i data-feather="sliders"></i></div>
+                        <span><?php echo e(__('Gate Type')); ?></span>
+                    </a>
+                </li>
+            <?php endif; ?>
                 <?php if(Gate::check('manage vehicle type')): ?>
                     <li class="menu-item <?php echo e(in_array($routeName,['vehicle-type.index'])?'active':''); ?>">
                         <a href="<?php echo e(route('vehicle-type.index')); ?>">

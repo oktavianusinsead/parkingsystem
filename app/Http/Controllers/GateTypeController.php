@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Gate;
+use App\Models\GateType;
 use App\Models\ParkingZone;
 use Illuminate\Http\Request;
 
@@ -12,8 +12,8 @@ class GateTypeController extends Controller
     public function index()
     {
         if (\Auth::user()->can('manage gatetype')) {
-            $gates = Gate::where('parent_id', '=', parentId())->get();
-            return view('gate.index', compact('gates'));
+            $gatetypes = GateType::get();
+            return view('gate_type.index', compact('gatetypes'));
         } else {
             return redirect()->back()->with('error', __('Permission denied.'));
         }

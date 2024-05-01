@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('gate_type', function (Blueprint $table) {
+        Schema::create('gate_types', function (Blueprint $table) {
             $table->id();
             $table->string('gate_type')->nullable();
             $table->text('notes')->nullable();
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gate_type');
+        Schema::dropIfExists('gate_types');
     }
 };

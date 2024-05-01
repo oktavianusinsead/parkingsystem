@@ -22,4 +22,8 @@ class Gate extends Model
     {
         return $this->hasOne('\App\Models\ParkingZone','id','zone');
     }
+    public function floors()
+    {
+        return $this->hasOne('\App\Models\Floor','id','floor_level');
+    }
 }

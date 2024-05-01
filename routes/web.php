@@ -20,7 +20,7 @@ use App\Http\Controllers\ParkingSlotController;
 use App\Http\Controllers\RfidVehicleController;
 use App\Http\Controllers\ParkingController;
 use App\Http\Controllers\PaymentController;
-
+use App\Http\Controllers\GateTypeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -238,7 +238,14 @@ Route::group(
     Route::get('zone/{id}/floor', [FloorController::class,'getFloor'])->name('zone.floor');
 });
 
+//-------------------------------Gate Type-------------------------------------------
 
+Route::resource('gate-type', GateTypeController::class)->middleware(
+    [
+        'auth',
+        'XSS',
+    ]
+);
 
 //-------------------------------Parking Rate-------------------------------------------
 

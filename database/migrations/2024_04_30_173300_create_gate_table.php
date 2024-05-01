@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('gates', function (Blueprint $table) {
             $table->id();
+            $table->string('gate_no')->nullable();
+            $table->string('gate_name')->nullable();
+            $table->integer('gate_type')->default(0);
+            $table->integer('zone')->default(0);
+            $table->integer('floor_level')->default(0);
+            $table->integer('status')->default(1);
+            $table->integer('parent_id')->default(0);
             $table->timestamps();
         });
     }
