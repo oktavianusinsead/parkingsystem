@@ -13,10 +13,10 @@
     </ul>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('card-action-btn'); ?>
-    <?php if(Gate::check('create gatetype')): ?>
+    <?php if(Gate::check('create vehicle type')): ?>
         <a class="btn btn-primary btn-sm ml-20 customModal" href="#" data-size="md"
-           data-url="<?php echo e(route('vehicle-type.create')); ?>"
-           data-title="<?php echo e(__('Create Vehicle Type')); ?>"> <i class="ti-plus mr-5"></i><?php echo e(__('Create Gate Type')); ?></a>
+           data-url="<?php echo e(route('gate-type.create')); ?>"
+           data-title="<?php echo e(__('Create Vehicle Type')); ?>"> <i class="ti-plus mr-5"></i><?php echo e(__('Create Type')); ?></a>
     <?php endif; ?>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>

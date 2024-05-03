@@ -13,10 +13,10 @@
     </ul>
 @endsection
 @section('card-action-btn')
-    @if(Gate::check('create gatetype'))
+    @if(Gate::check('create gate type'))
         <a class="btn btn-primary btn-sm ml-20 customModal" href="#" data-size="md"
-           data-url="{{ route('vehicle-type.create') }}"
-           data-title="{{__('Create Vehicle Type')}}"> <i class="ti-plus mr-5"></i>{{__('Create Gate Type')}}</a>
+           data-url="{{ route('gate-type.create') }}"
+           data-title="{{__('Create Gate Type')}}"> <i class="ti-plus mr-5"></i>{{__('Gate Type')}}</a>
     @endif
 @endsection
 @section('content')

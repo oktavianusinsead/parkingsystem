@@ -22,17 +22,15 @@ class GateTypeController extends Controller
 
     public function create()
     {
-        $zones = ParkingZone::where('parent_id', parentId())->get()->pluck('zone_name', 'id');
-        $zones->prepend(__('Select Zone'), '');
-
+        return view('gate_type.create');
         
-        return view('gate.create', compact('zones'));
+        
     }
 
 
     public function store(Request $request)
     {
-        if (\Auth::user()->can('create floor')) {
+        if (\Auth::user()->can('create gatetype')) {
             $validator = \Validator::make(
                 $request->all(), [
                     'title' => 'required',
