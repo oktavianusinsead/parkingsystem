@@ -155,6 +155,15 @@
                 @endif
 
             @endif
+            <li class="cdxmenu-title">
+                <h5>{{__('Report')}}</h5>
+            </li>
+            <li class="menu-item {{in_array($routeName,['dashboard',''])?'active':''}}">
+                <a href="{{route('dashboard')}}">
+                    <div class="icon-item"><i data-feather="book"></i></div>
+                    <span>{{__('Report Income')}}</span>
+                </a>
+            </li>
             @if( Gate::check('manage parking zone') || Gate::check('manage gatetype') || Gate::check('manage vehicle_type') || Gate::check('manage floor'))
                 <li class="cdxmenu-title">
                     <h5>{{__('System Setup')}}</h5>
@@ -167,14 +176,14 @@
                         </a>
                     </li>
                 @endif
-                @if(Gate::check('manage gatetype'))
+                @if(Gate::check('manage parking zone'))
                 <li class="menu-item {{in_array($routeName,['gate-type.index'])?'active':''}}">
                     <a href="{{route('gate-type.index')}}">
                         <div class="icon-item"><i data-feather="sliders"></i></div>
                         <span>{{__('Gate Type')}}</span>
                     </a>
                 </li>
-            @endif
+                @endif
                 @if(Gate::check('manage vehicle type'))
                     <li class="menu-item {{in_array($routeName,['vehicle-type.index'])?'active':''}}">
                         <a href="{{route('vehicle-type.index')}}">

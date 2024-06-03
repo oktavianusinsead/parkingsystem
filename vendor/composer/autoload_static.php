@@ -633,6 +633,7 @@ class ComposerStaticInit8342c07d9161854d53f44a94c2ace5e8
         'App\\Models\\Custom' => __DIR__ . '/../..' . '/app/Models/Custom.php',
         'App\\Models\\Floor' => __DIR__ . '/../..' . '/app/Models/Floor.php',
         'App\\Models\\Gate' => __DIR__ . '/../..' . '/app/Models/Gate.php',
+        'App\\Models\\GateType' => __DIR__ . '/../..' . '/app/Models/GateType.php',
         'App\\Models\\LoggedHistory' => __DIR__ . '/../..' . '/app/Models/LoggedHistory.php',
         'App\\Models\\NoticeBoard' => __DIR__ . '/../..' . '/app/Models/NoticeBoard.php',
         'App\\Models\\PackageTransaction' => __DIR__ . '/../..' . '/app/Models/PackageTransaction.php',

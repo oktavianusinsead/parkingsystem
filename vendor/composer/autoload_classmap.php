@@ -58,6 +58,7 @@ return array(
     'App\\Models\\Custom' => $baseDir . '/app/Models/Custom.php',
     'App\\Models\\Floor' => $baseDir . '/app/Models/Floor.php',
     'App\\Models\\Gate' => $baseDir . '/app/Models/Gate.php',
+    'App\\Models\\GateType' => $baseDir . '/app/Models/GateType.php',
     'App\\Models\\LoggedHistory' => $baseDir . '/app/Models/LoggedHistory.php',
     'App\\Models\\NoticeBoard' => $baseDir . '/app/Models/NoticeBoard.php',
     'App\\Models\\PackageTransaction' => $baseDir . '/app/Models/PackageTransaction.php',

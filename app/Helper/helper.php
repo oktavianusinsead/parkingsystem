@@ -44,8 +44,8 @@ if (!function_exists('settingsKeys')) {
             'SERVER_ENCRYPTION' => "",
             'FROM_EMAIL' => "",
             'FROM_NAME' => "",
-            'CURRENCY' => "USD",
-            'CURRENCY_SYMBOL' => "$",
+            'CURRENCY' => "IDR",
+            'CURRENCY_SYMBOL' => "Rp",
             'STRIPE_PAYMENT' => "off",
             'STRIPE_KEY' => "",
             'STRIPE_SECRET' => "",
@@ -100,8 +100,8 @@ if (!function_exists('subscriptionPaymentSettings')) {
     {
         $settingData = DB::table('settings')->where('type', 'payment')->where('parent_id', '=', 1)->get();
         $result = [
-            'CURRENCY' => "USD",
-            'CURRENCY_SYMBOL' => "$",
+            'CURRENCY' => "IDR",
+            'CURRENCY_SYMBOL' => "Rp",
             'STRIPE_PAYMENT' => "off",
             'STRIPE_KEY' => "",
             'STRIPE_SECRET' => "",
@@ -130,8 +130,8 @@ if (!function_exists('invoicePaymentSettings')) {
     {
         $settingData = DB::table('settings')->where('type', 'payment')->where('parent_id', $id)->get();
         $result = [
-            'CURRENCY' => "USD",
-            'CURRENCY_SYMBOL' => "$",
+            'CURRENCY' => "IDR",
+            'CURRENCY_SYMBOL' => "Rp",
             'STRIPE_PAYMENT' => "off",
             'STRIPE_KEY' => "",
             'STRIPE_SECRET' => "",
