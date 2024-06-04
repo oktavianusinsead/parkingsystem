@@ -18,6 +18,10 @@ class HomeController extends Controller
     {
 
         if (\Auth::check()) {
+            $start = strtotime(date('Y-m'));
+            $end = strtotime(date('Y-12'));
+            $currentDate = $start;
+            $month = date('m', $currentDate);
             if (\Auth::user()->type == 'super admin') {
                 $result['totalOrganization'] = User::where('type', 'owner')->count();
                 $result['totalSubscription'] = Subscription::count();
@@ -37,7 +41,8 @@ class HomeController extends Controller
                 $result['availableSlot'] = ParkingSlot::where('parent_id', parentId())->where('is_available',1)->count();
                 $result['todayIncome'] =Parking::where('parent_id', parentId())->where('entry_date',date('Y-m-d'))->sum('amount');
                 $result['income'] = $this->getIncome();
-
+                $result['monthlyIncome'] = Parking::where('parent_id', parentId())->whereMonth('entry_date',$month)->sum('amount');
+                $result['qty'] = $this->getQty();
                 $result['settings']=settings();
 
 
@@ -73,13 +78,38 @@ class HomeController extends Controller
         $result = [];
         $result['label'] = [];
         $result['data'] = [];
-        // foreach ($interval as $date => $label) {
-        //     $result = Parking::where('parent_id',parentId())->whereDate('entry_date', $date)->sum('amount');
-        //     $result['label'][] = $label;
-        //     $result['data'][] = $result;
-        // }
+        foreach ($interval as $date => $label) {
+            $sumIncome = Parking::where('parent_id',parentId())->whereDate('entry_date', $date)->sum('amount');
+            $result['label'][] = $label;
+            $result['data'][] = $sumIncome;
+        }
 
         return $result;
+
+        
+    }
+
+    public function getQty()
+    {
+        $interval = [];
+        $previousWeekData = strtotime("-2 week +1 day");
+        for ($i = 0; $i < 14; $i++) {
+            $interval[date('Y-m-d', $previousWeekData)] = date('d-M', $previousWeekData);
+            $previousWeekData = strtotime(date('Y-m-d', $previousWeekData) . " +1 day");
+        }
+
+        $result = [];
+        $result['label'] = [];
+        $result['data'] = [];
+        foreach ($interval as $date => $label) {
+            $sumQty = Parking::where('parent_id',parentId())->whereDate('entry_date', $date)->count('id');
+            $result['label'][] = $label;
+            $result['data'][] = $sumQty;
+        }
+
+        return $result;
+
+        
     }
 
 
