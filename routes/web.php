@@ -21,6 +21,8 @@ use App\Http\Controllers\RfidVehicleController;
 use App\Http\Controllers\ParkingController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\GateTypeController;
+use App\Http\Controllers\ReportController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -323,3 +325,21 @@ Route::group(
     Route::get('subscription/{id}/paypal/{status}', [PaymentController::class, 'subscriptionPaypalStatus'])->name('subscription.paypal.status');
 }
 );
+
+//-------------------------------Report-------------------------------------------
+
+Route::resource('report', ReportController::class)->middleware(
+    [
+        'auth',
+        'XSS',
+    ]
+);
+
+Route::resource('reporttransaction', TransactionController::class)->middleware(
+    [
+        'auth',
+        'XSS',
+    ]
+);
+
+

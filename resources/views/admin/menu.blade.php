@@ -158,12 +158,19 @@
             <li class="cdxmenu-title">
                 <h5>{{__('Report')}}</h5>
             </li>
-            <li class="menu-item {{in_array($routeName,['dashboard',''])?'active':''}}">
-                <a href="{{route('dashboard')}}">
+            <li class="menu-item {{in_array($routeName,['report.index',''])?'active':''}}">
+                <a href="{{route('report.index')}}">
                     <div class="icon-item"><i data-feather="book"></i></div>
-                    <span>{{__('Report Income')}}</span>
+                    <span>{{__('Report Settlement')}}</span>
                 </a>
             </li>
+            <li class="menu-item {{in_array($routeName,['report.index',''])?'active':''}}">
+                <a href="{{route('report.index')}}">
+                    <div class="icon-item"><i data-feather="book"></i></div>
+                    <span>{{__('Report Transaction')}}</span>
+                </a>
+            </li>
+
             @if( Gate::check('manage parking zone') || Gate::check('manage gatetype') || Gate::check('manage vehicle_type') || Gate::check('manage floor'))
                 <li class="cdxmenu-title">
                     <h5>{{__('System Setup')}}</h5>

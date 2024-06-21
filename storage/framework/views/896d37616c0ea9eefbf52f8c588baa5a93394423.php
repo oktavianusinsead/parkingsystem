@@ -158,12 +158,19 @@
             <li class="cdxmenu-title">
                 <h5><?php echo e(__('Report')); ?></h5>
             </li>
-            <li class="menu-item <?php echo e(in_array($routeName,['dashboard',''])?'active':''); ?>">
-                <a href="<?php echo e(route('dashboard')); ?>">
+            <li class="menu-item <?php echo e(in_array($routeName,['report.index',''])?'active':''); ?>">
+                <a href="<?php echo e(route('report.index')); ?>">
                     <div class="icon-item"><i data-feather="book"></i></div>
-                    <span><?php echo e(__('Report Income')); ?></span>
+                    <span><?php echo e(__('Report Settlement')); ?></span>
                 </a>
             </li>
+            <li class="menu-item <?php echo e(in_array($routeName,['report.index',''])?'active':''); ?>">
+                <a href="<?php echo e(route('report.index')); ?>">
+                    <div class="icon-item"><i data-feather="book"></i></div>
+                    <span><?php echo e(__('Report Transaction')); ?></span>
+                </a>
+            </li>
+
             <?php if( Gate::check('manage parking zone') || Gate::check('manage gatetype') || Gate::check('manage vehicle_type') || Gate::check('manage floor')): ?>
                 <li class="cdxmenu-title">
                     <h5><?php echo e(__('System Setup')); ?></h5>
