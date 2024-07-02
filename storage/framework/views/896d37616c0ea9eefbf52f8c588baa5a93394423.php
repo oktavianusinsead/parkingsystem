@@ -91,6 +91,35 @@
                     </li>
                 <?php endif; ?>
             <?php endif; ?>
+        
+            <?php if( Gate::check('manage hotel') ): ?>
+                <li class="cdxmenu-title">
+                    <h5><?php echo e(__('Hotel Management')); ?></h5>
+                </li>
+                <?php if(Gate::check('manage hotel')): ?>
+                    <li class="menu-item <?php echo e(in_array($routeName,['hotel.index'])?'active':''); ?>">
+                        <a href="<?php echo e(route('hotel.index')); ?>">
+                            <div class="icon-item"><i data-feather="file-text"></i></div>
+                            <span><?php echo e(__('Compliment List')); ?></span>
+                        </a>
+                    </li>
+                <?php endif; ?>
+                
+              
+
+            <?php endif; ?>
+            <li class="cdxmenu-title">
+                    <h5><?php echo e(__('Hotel Management')); ?></h5>
+                </li>
+                <?php if(!Gate::check('manage hotel')): ?>
+                    <li class="menu-item <?php echo e(in_array($routeName,['hotel.index'])?'active':''); ?>">
+                        <a href="<?php echo e(route('hotel.index')); ?>">
+                            <div class="icon-item"><i data-feather="file-text"></i></div>
+                            <span><?php echo e(__('Compliment List')); ?></span>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
 
             <?php if( Gate::check('manage parking rate') ||  Gate::check('manage parking slot') ||  Gate::check('manage rfid vehicle') ||  Gate::check('manage parking') || Gate::check('manage contact') || Gate::check('manage support') || Gate::check('manage note') ): ?>
                 <li class="cdxmenu-title">

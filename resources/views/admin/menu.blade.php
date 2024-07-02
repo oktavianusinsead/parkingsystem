@@ -91,6 +91,35 @@
                     </li>
                 @endif
             @endif
+        
+            @if( Gate::check('manage hotel') )
+                <li class="cdxmenu-title">
+                    <h5>{{__('Hotel Management')}}</h5>
+                </li>
+                @if(Gate::check('manage hotel'))
+                    <li class="menu-item {{in_array($routeName,['hotel.index'])?'active':''}}">
+                        <a href="{{route('hotel.index')}}">
+                            <div class="icon-item"><i data-feather="file-text"></i></div>
+                            <span>{{__('Compliment List')}}</span>
+                        </a>
+                    </li>
+                @endif
+                
+              
+
+            @endif
+            <li class="cdxmenu-title">
+                    <h5>{{__('Hotel Management')}}</h5>
+                </li>
+                @if(!Gate::check('manage hotel'))
+                    <li class="menu-item {{in_array($routeName,['hotel.index'])?'active':''}}">
+                        <a href="{{route('hotel.index')}}">
+                            <div class="icon-item"><i data-feather="file-text"></i></div>
+                            <span>{{__('Compliment List')}}</span>
+                        </a>
+                    </li>
+                @endif
+
 
             @if( Gate::check('manage parking rate') ||  Gate::check('manage parking slot') ||  Gate::check('manage rfid vehicle') ||  Gate::check('manage parking') || Gate::check('manage contact') || Gate::check('manage support') || Gate::check('manage note') )
                 <li class="cdxmenu-title">

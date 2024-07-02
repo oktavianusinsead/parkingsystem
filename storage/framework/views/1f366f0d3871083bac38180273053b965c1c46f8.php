@@ -1,4 +1,4 @@
-<?php echo e(Form::open(array('url'=>'rfid-vehicle','method'=>'post'))); ?>
+<?php echo e(Form::model($rfidVehicle, array('route' => array('rfid-vehicle.update', $rfidVehicle->id), 'method' => 'PUT'))); ?>
 
 <div class="modal-body">
     <div class="row">
@@ -23,6 +23,7 @@
         <div class="form-group col-md-6">
             <?php echo e(Form::label('vehicle_type',__('Vehicle Type'),array('class'=>'form-label'))); ?>
 
+            <input type="hidden" id="edit_type" value="<?php echo e($rfidVehicle->type); ?>">
             <div class="vehicle_type_dive">
                 <select class="form-control hidesearch vehicle_type" id="vehicle_type" name="type">
                     <option value=""><?php echo e(__('Select Vehicle Type')); ?></option>
@@ -32,6 +33,7 @@
         <div class="form-group col-md-6">
             <?php echo e(Form::label('floor',__('Floor'),array('class'=>'form-label'))); ?>
 
+            <input type="hidden" id="edit_floor" value="<?php echo e($rfidVehicle->floor); ?>">
             <div class="floor_dive">
                 <select class="form-control hidesearch floor" id="floor_id" name="floor">
                     <option value=""><?php echo e(__('Select Floor')); ?></option>
@@ -41,23 +43,14 @@
         <div class="form-group col-md-6">
             <?php echo e(Form::label('slot',__('Slot'),array('class'=>'form-label'))); ?>
 
+            <input type="hidden" id="edit_slot" value="<?php echo e($rfidVehicle->slot); ?>">
             <div class="slot_dive">
                 <select class="form-control hidesearch slot" id="slot" name="slot">
-                    <option value=""><?php echo e(__('Select Slot')); ?></option>
+                    <?php $__currentLoopData = $slots; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k=>$slot): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <option value="<?php echo e($k); ?>" <?php echo e($k==$rfidVehicle->slot?'selected':''); ?>><?php echo e($slot); ?></option>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </select>
             </div>
-        </div>
-        <div class="form-group  col-md-6">
-            <?php echo e(Form::label('company_name',__('Company Name'),array('class'=>'form-label'))); ?>
-
-            <?php echo e(Form::text('company_name',null,array('class'=>'form-control','placeholder'=>__('Enter Company Name')))); ?>
-
-        </div>
-        <div class="form-group col-md-6">
-            <?php echo e(Form::label('membertype',__('Member Type'),array('class'=>'form-label'))); ?>
-
-            <?php echo e(Form::select('membertype',$membertypes,null,array('class'=>'form-control hidesearch','id'=>'member_type'))); ?>
-
         </div>
         <div class="form-group  col-md-6">
             <?php echo e(Form::label('vehicle_no',__('Vehicle Number'),array('class'=>'form-label'))); ?>
@@ -71,18 +64,6 @@
             <?php echo e(Form::text('rfid_no',null,array('class'=>'form-control','placeholder'=>__('Enter RFID number')))); ?>
 
         </div>
-        <div class="form-group  col-md-6">
-            <?php echo e(Form::label('start_date',__('Start Date'),array('class'=>'form-label'))); ?>
-
-            <?php echo e(Form::date('start_date',date('Y-m-d'),array('class'=>'form-control'))); ?>
-
-        </div>
-        <div class="form-group  col-md-6">
-            <?php echo e(Form::label('end_date',__('End Date'),array('class'=>'form-label'))); ?>
-
-            <?php echo e(Form::date('end_date',date('Y-m-d'),array('class'=>'form-control'))); ?>
-
-        </div>
         <div class="form-group  col-md-12">
             <?php echo e(Form::label('notes',__('Notes'),array('class'=>'form-label'))); ?>
 
@@ -93,12 +74,13 @@
 </div>
 <div class="modal-footer">
     <button class="btn btn-secondary" type="button" data-bs-dismiss="modal"><?php echo e(__('Close')); ?></button>
-    <?php echo e(Form::submit(__('Create'),array('class'=>'btn btn-primary btn-rounded'))); ?>
+    <?php echo e(Form::submit(__('Update'),array('class'=>'btn btn-primary btn-rounded'))); ?>
 
 </div>
 <?php echo e(Form::close()); ?>
 
 <script>
+
     $('#zone_id').on('change', function () {
         "use strict";
         var zone_id = $(this).val();
@@ -121,7 +103,12 @@
                 $('.vehicle_type_div').html(vehicle_type);
 
                 $.each(data, function (key, value) {
-                    $('.vehicle_type').append('<option value="' + key + '">' + value + '</option>');
+                    var edit_type_id = $('#edit_type').val();
+                    if (key == edit_type_id) {
+                        $('.vehicle_type').append('<option selected value="' + key + '">' + value + '</option>');
+                    } else {
+                        $('.vehicle_type').append('<option value="' + key + '">' + value + '</option>');
+                    }
                 });
 
             },
@@ -147,11 +134,17 @@
             type: 'GET',
             success: function (data) {
                 $('.floor').empty();
-                var floor = `<select class="form-control hidesearch floor" id="floor_id" name="floor"> <option value="">Select Floor</option></select>`;
+                var floor = `<select class="form-control hidesearch floor" id="floor_id" name="floor"><option value="">Select Floor</option></select>`;
                 $('.floor').html(floor);
 
                 $.each(data, function (key, value) {
-                    $('.floor').append('<option value="' + key + '">' + value + '</option>');
+                    var edit_floor_id = $('#edit_floor').val();
+                    if (key == edit_floor_id) {
+                        $('.floor').append('<option selected value="' + key + '">' + value + '</option>');
+                    } else {
+                        $('.floor').append('<option value="' + key + '">' + value + '</option>');
+                    }
+
                 });
 
             },
@@ -175,8 +168,7 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             data: {
-                zone_id: zone_id,
-                type_id: type_id,
+
             },
             contentType: false,
             processData: false,
@@ -187,12 +179,20 @@
                 $('.slot_div').html(slot);
 
                 $.each(data, function (key, value) {
-                    $('.slot').append('<option value="' + key + '">' + value + '</option>');
+                    var edit_slot_id= $('#edit_slot').val();
+                    if(key==edit_slot_id){
+                        $('.slot').append('<option selected value="' + key + '">' + value +'</option>');
+                    }else{
+                        $('.slot').append('<option value="' + key + '">' + value + '</option>');
+                    }
                 });
 
             },
 
         });
     });
+    $('#zone_id').trigger('change');
+
 </script>
-<?php /**PATH /Users/user/parkingsystem/resources/views/rfid_vehicle/create.blade.php ENDPATH**/ ?>
+
+<?php /**PATH /Users/user/parkingsystem/resources/views/rfid_vehicle/edit.blade.php ENDPATH**/ ?>

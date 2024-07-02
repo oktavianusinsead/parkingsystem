@@ -38,12 +38,28 @@
             </div>
         </div>
         <div class="form-group  col-md-6">
+            {{Form::label('company_name',__('Company Name'),array('class'=>'form-label'))}}
+            {{Form::text('company_name',null,array('class'=>'form-control','placeholder'=>__('Enter Company Name')))}}
+        </div>
+        <div class="form-group col-md-6">
+            {{Form::label('membertype',__('Member Type'),array('class'=>'form-label'))}}
+            {{Form::select('membertype',$membertypes,null,array('class'=>'form-control hidesearch','id'=>'member_type'))}}
+        </div>
+        <div class="form-group  col-md-6">
             {{Form::label('vehicle_no',__('Vehicle Number'),array('class'=>'form-label'))}}
             {{Form::text('vehicle_no',null,array('class'=>'form-control','placeholder'=>__('Enter vehicle number')))}}
         </div>
         <div class="form-group  col-md-6">
             {{Form::label('rfid_no',__('RFID Number'),array('class'=>'form-label'))}}
             {{Form::text('rfid_no',null,array('class'=>'form-control','placeholder'=>__('Enter RFID number')))}}
+        </div>
+        <div class="form-group  col-md-6">
+            {{Form::label('start_date',__('Start Date'),array('class'=>'form-label'))}}
+            {{Form::date('start_date',date('Y-m-d'),array('class'=>'form-control'))}}
+        </div>
+        <div class="form-group  col-md-6">
+            {{Form::label('end_date',__('End Date'),array('class'=>'form-label'))}}
+            {{Form::date('end_date',date('Y-m-d'),array('class'=>'form-control'))}}
         </div>
         <div class="form-group  col-md-12">
             {{Form::label('notes',__('Notes'),array('class'=>'form-label'))}}

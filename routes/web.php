@@ -22,6 +22,7 @@ use App\Http\Controllers\ParkingController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\GateTypeController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\HotelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -336,6 +337,13 @@ Route::resource('report', ReportController::class)->middleware(
 );
 
 Route::resource('reporttransaction', TransactionController::class)->middleware(
+    [
+        'auth',
+        'XSS',
+    ]
+);
+
+Route::resource('hotel', HotelController::class)->middleware(
     [
         'auth',
         'XSS',

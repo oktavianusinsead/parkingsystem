@@ -19,6 +19,7 @@ class RfidVehicle extends Model
         'name',
         'phone_number',
         'notes',
+        'membertype',
         'parent_id',
     ];
 
@@ -39,6 +40,11 @@ class RfidVehicle extends Model
     public function slots()
     {
         return $this->hasOne('\App\Models\ParkingSlot','id','slot');
+    }
+
+    public function membertypes()
+    {
+        return $this->hasOne('\App\Models\MemberType','id','membertype');
     }
 
 }

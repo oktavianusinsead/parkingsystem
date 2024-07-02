@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ParkingSlot;
 use App\Models\ParkingZone;
+use App\Models\MemberType;
 use App\Models\RfidVehicle;
 use Illuminate\Http\Request;
 
@@ -25,8 +26,9 @@ class RfidVehicleController extends Controller
     {
         $zones = ParkingZone::where('parent_id', parentId())->get()->pluck('zone_name', 'id');
         $zones->prepend(__('Select Zone'), '');
-
-        return view('rfid_vehicle.create', compact('zones'));
+        $membertypes = MemberType::where('parent_id', parentId())->get()->pluck('member_type', 'id');
+        $membertypes->prepend(__('Select Member Types'), '');
+        return view('rfid_vehicle.create', compact('zones','membertypes'));
     }
 
 
@@ -57,6 +59,11 @@ class RfidVehicleController extends Controller
             $vehicle->name = $request->name;
             $vehicle->phone_number = $request->phone_number;
             $vehicle->notes = $request->notes;
+            $vehicle->vehicleid = $request->type;
+            $vehicle->company_name = $request->company_name;
+            $vehicle->member_type = $request->membertype;
+            $vehicle->start_date = $request->start_date;
+            $vehicle->end_date = $request->end_date;
             $vehicle->parent_id = parentId();
             $vehicle->save();
 
