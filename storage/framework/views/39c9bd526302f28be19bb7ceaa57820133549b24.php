@@ -17,11 +17,11 @@
         <div class="col-xxl-3 col-sm-6 cdx-xxl-50">
             <div class="card sale-revenue">
                 <div class="card-header">
-                    <h4><?php echo e(__('Total Parking Zone')); ?></h4>
+                    <h4><?php echo e(__('Mobil In / Mobil Out')); ?></h4>
                 </div>
-                <div class="card-body progressCounter">
+                <div class="card-body">
                     <h2>
-                        <span class="count"><?php echo e($result['totalZone']); ?></span>
+                        <span class="count"><?php echo e($result['totalmobil']); ?> / <?php echo e($result['totaloutmobil']); ?></span>
                     </h2>
                 </div>
             </div>
@@ -29,11 +29,11 @@
         <div class="col-xxl-3 col-sm-6 cdx-xxl-50">
             <div class="card sale-revenue">
                 <div class="card-header">
-                    <h4><?php echo e(__('Total Slot')); ?></h4>
+                    <h4><?php echo e(__('Motor In')); ?> / <?php echo e(__('Motor Out')); ?></h4>
                 </div>
-                <div class="card-body progressCounter">
+                <div class="card-body ">
                     <h2>
-                        <span class="count"><?php echo e($result['totalSlot']); ?></span>
+                        <span class="count"><?php echo e($result['totalmotor']); ?> / <?php echo e($result['totalout']); ?></span>
                     </h2>
                 </div>
             </div>
@@ -42,11 +42,50 @@
         <div class="col-xxl-3 col-sm-6 cdx-xxl-50">
             <div class="card sale-revenue">
                 <div class="card-header">
-                    <h4><?php echo e(__('Available Slot')); ?></h4>
+                    <h4><?php echo e(__('Member Mobil')); ?></h4>
                 </div>
                 <div class="card-body progressCounter">
                     <h2>
-                        <span class="count"><?php echo e($result['availableSlot']); ?></span>
+                        <span class="count"><?php echo e($result['totalout']); ?></span>
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xxl-3 col-sm-6 cdx-xxl-50">
+            <div class="card sale-revenue">
+                <div class="card-header">
+                    <h4><?php echo e(__('Member Motor')); ?></h4>
+                </div>
+                <div class="card-body progressCounter">
+                    <h2>
+                        <span class="count"><?php echo e($result['totalout']); ?></span>
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xxl-3 col-sm-6 cdx-xxl-50">
+            <div class="card sale-revenue">
+                <div class="card-header">
+                    <h4><?php echo e(__('Hotel Compliment')); ?></h4>
+                </div>
+                <div class="card-body progressCounter">
+                    <h2>
+                        <span class="count"><?php echo e($result['totalout']); ?></span>
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xxl-3 col-sm-6 cdx-xxl-50">
+            <div class="card sale-revenue">
+                <div class="card-header">
+                    <h4><?php echo e(__('Member Register')); ?></h4>
+                </div>
+                <div class="card-body progressCounter">
+                    <h2>
+                        <span class="count"><?php echo e($result['totalout']); ?></span>
                     </h2>
                 </div>
             </div>
@@ -57,7 +96,7 @@
                 <div class="card-header">
                     <h4><?php echo e(__('Today Income')); ?></h4>
                 </div>
-                <div class="card-body progressCounter">
+                <div class="card-body">
                     <h2>
                         <span class="count"><?php echo e($result['todayIncome']); ?></span>
                     </h2>
@@ -67,11 +106,59 @@
         <div class="col-xxl-3 col-sm-6 cdx-xxl-50">
             <div class="card sale-revenue">
                 <div class="card-header">
-                    <h4><?php echo e(__('Montly Income')); ?></h4>
+                    <h4><?php echo e(__('Monthly Income')); ?></h4>
                 </div>
-                <div class="card-body progressCounter">
+                <div class="card-body">
                     <h2>
-                        <span class="count"><?php echo e($result['monthlyIncome']); ?></span>
+                        <span class="count"><?php echo e($result['monthlyincome']); ?></span>
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-xxl-3 col-sm-6 cdx-xxl-50">
+            <div class="card sale-revenue">
+                <div class="card-header">
+                    <h4><?php echo e(__('BCA Income')); ?></h4>
+                </div>
+                <div class="card-body">
+                    <h2>
+                        <span class="count"><?php echo e($result['bca']); ?></span>
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-xxl-3 col-sm-6 cdx-xxl-50">
+            <div class="card sale-revenue">
+                <div class="card-header">
+                    <h4><?php echo e(__('Mandiri Income')); ?></h4>
+                </div>
+                <div class="card-body">
+                    <h2>
+                        <span class="count"><?php echo e($result['mandiri']); ?></span>
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-xxl-3 col-sm-6 cdx-xxl-50">
+            <div class="card sale-revenue">
+                <div class="card-header">
+                    <h4><?php echo e(__('BRI Income')); ?></h4>
+                </div>
+                <div class="card-body">
+                    <h2>
+                        <span class="count"><?php echo e($result['bri']); ?></span>
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-xxl-3 col-sm-6 cdx-xxl-50">
+            <div class="card sale-revenue">
+                <div class="card-header">
+                    <h4><?php echo e(__('BNI Income')); ?></h4>
+                </div>
+                <div class="card-body">
+                    <h2>
+                        <span class="count"><?php echo e($result['bni']); ?></span>
                     </h2>
                 </div>
             </div>

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Transaction;
 class TransactionController extends Controller
 {
     public function index()
@@ -14,6 +14,9 @@ class TransactionController extends Controller
         // } else {
         //     return redirect()->back()->with('error', __('Permission denied.'));
         // }
-        return view('reporttransaction.index');
+        $sdate = date('Y-m-d')." 00:00:00";
+        $edate = date('Y-m-d')." 23:59:59";
+        $report = Transaction::whereBetween('dateout', [$sdate, $edate])->get();
+        return view('reporttransaction.index',compact('report'));
     }
 }

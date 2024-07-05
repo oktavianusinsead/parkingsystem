@@ -9,8 +9,10 @@ use App\Models\Parking;
 use App\Models\ParkingSlot;
 use App\Models\ParkingZone;
 use App\Models\Subscription;
+use App\Models\Transaction;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -36,17 +38,74 @@ class HomeController extends Controller
 
                 return view('dashboard.super_admin', compact('result'));
             } else {
-                $result['totalZone'] = ParkingZone::where('parent_id', parentId())->count();
-                $result['totalSlot'] = ParkingSlot::where('parent_id', parentId())->count();
+                $sdate = strtotime(date('Y-m-d'))." 00:00:00";
+                $edate = strtotime(date('Y-m-d'))." 23:59:59";
+                $startDate = Carbon::today()->startOfDay()->toDateTimeString();
+                //cc($edate);
+// End date (today at 23:59:59)
+                $endDate = Carbon::today()->endOfDay()->toDateTimeString();
+
+                $startMonth = Carbon::now()->startOfMonth()->startOfDay();
+
+    // End date for the current month
+    $endMonth = Carbon::now()->endOfMonth()->endOfDay();
+                
+                $result['totalmobil'] =DB::table('transactions')
+                ->whereBetween('datetransact', [$startDate, $endDate])
+                ->where('vehicleid','Mobil')
+                ->count();
+                $result['totaloutmobil'] =DB::table('transactions')
+                ->whereBetween('dateout', [$startDate, $endDate])
+                ->where('vehicleid','Mobil')
+                ->where('alreadyout','x')
+                ->count();
+                $result['totalmotor'] =DB::table('transactions')
+                ->whereBetween('datetransact', [$startDate, $endDate])
+                ->where('vehicleid','Motor')
+                ->count();
+                $result['totalout'] =DB::table('transactions')
+                ->whereBetween('dateout', [$startDate, $endDate])
+                ->where('vehicleid','Motor')
+                ->where('alreadyout','x')
+                ->count();
+                $result['mandiri'] =DB::table('transactions')
+                ->whereBetween('dateout', [$startDate, $endDate])
+                ->where('paymentby','Mandiri')
+                ->where('alreadyout','x')
+                ->count();
+                $result['bca'] =DB::table('transactions')
+                ->whereBetween('dateout', [$startDate, $endDate])
+                ->where('paymentby','BCA')
+                ->where('alreadyout','x')
+                ->count();
+                $result['bri'] =DB::table('transactions')
+                ->whereBetween('dateout', [$startDate, $endDate])
+                ->where('paymentby','BRI')
+                ->where('alreadyout','x')
+                ->count();
+                $result['bni'] =DB::table('transactions')
+                ->whereBetween('dateout', [$startDate, $endDate])
+                ->where('paymentby','BNI')
+                ->where('alreadyout','x')
+                ->count();
                 $result['availableSlot'] = ParkingSlot::where('parent_id', parentId())->where('is_available',1)->count();
-                $result['todayIncome'] =Parking::where('parent_id', parentId())->where('entry_date',date('Y-m-d'))->sum('amount');
+                $result['todayIncome'] =DB::table('transactions')
+                ->whereBetween('dateout', [$startDate, $endDate])
+                ->where('alreadyout','x')
+                ->sum('cost');
+
+                $result['monthlyincome'] =DB::table('transactions')
+                ->whereBetween('dateout', [$startMonth, $endMonth])
+                ->where('alreadyout','x')
+                ->sum('cost');
+                //echo "Total cost: " . $result['todayIncome'];
                 $result['income'] = $this->getIncome();
                 $result['monthlyIncome'] = Parking::where('parent_id', parentId())->whereMonth('entry_date',$month)->sum('amount');
                 $result['qty'] = $this->getQty();
                 $result['settings']=settings();
 
 
-                return view('dashboard.index', compact('result'));
+               return view('dashboard.index', compact('result'));
             }
         } else {
             if (!file_exists(setup())) {
@@ -79,7 +138,7 @@ class HomeController extends Controller
         $result['label'] = [];
         $result['data'] = [];
         foreach ($interval as $date => $label) {
-            $sumIncome = Parking::where('parent_id',parentId())->whereDate('entry_date', $date)->sum('amount');
+            $sumIncome = Transaction::whereDate('dateout', $date)->sum('cost');
             $result['label'][] = $label;
             $result['data'][] = $sumIncome;
         }
@@ -102,7 +161,7 @@ class HomeController extends Controller
         $result['label'] = [];
         $result['data'] = [];
         foreach ($interval as $date => $label) {
-            $sumQty = Parking::where('parent_id',parentId())->whereDate('entry_date', $date)->count('id');
+            $sumQty = Transaction::whereDate('dateout', $date)->count('transactionid');
             $result['label'][] = $label;
             $result['data'][] = $sumQty;
         }

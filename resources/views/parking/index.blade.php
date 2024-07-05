@@ -13,11 +13,7 @@
     </ul>
 @endsection
 @section('card-action-btn')
-    @if(Gate::check('create parking'))
-        <a class="btn btn-primary btn-sm ml-20 customModal" href="#" data-size="xl"
-           data-url="{{ route('parking.create') }}"
-           data-title="{{__('Create Parking')}}"> <i class="ti-plus mr-5"></i>{{__('Create Parking')}}</a>
-    @endif
+    
 @endsection
 @section('content')
 
@@ -29,77 +25,46 @@
                         <thead>
                         <tr>
                             <th>{{__('ID')}}</th>
-                            <th>{{__('Zone')}}</th>
+                            <th>{{__('Transaction No')}}</th>
                             <th>{{__('Type')}}</th>
-                            <th>{{__('Slot')}}</th>
-                            <th>{{__('Vehicle No')}}</th>
+                           
                             <th>{{__('Entry')}}</th>
                             <th>{{__('Exit')}}</th>
-                            <th>{{__('Payment Status')}}</th>
+                            <th>{{__('Duration')}}</th>
+                            
+                            <th>{{__('Cost')}}</th>
                             <th>{{__('Status')}}</th>
-                            @if(Gate::check('edit parking') ||  Gate::check('delete parking') ||  Gate::check('show parking'))
-                                <th class="text-right">{{__('Action')}}</th>
-                            @endif
+                            <th>{{__('Payment By')}}</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($parkings as $parking)
 
                             <tr role="row">
-                                <td> {{parkingPrefix().$parking->parking_id}}</td>
-                                <td> {{ !empty($parking->zones)?$parking->zones->zone_name:'-' }}   </td>
-                                <td> {{ !empty($parking->types)?$parking->types->title:'-' }}   </td>
-                                <td> {{ !empty($parking->slots)?$parking->slots->title:'-' }}   </td>
-                                <td>{{$parking->vehicle_number}}</td>
+                                <td> {{parkingPrefix().$parking->transactionid}}</td>
+                                <td> {{$parking->tiketno}}</td>
+                                <td> {{$parking->vehicleid}}  </td>
+                                <td> {{$parking->datetransact}} </td>
+                                <td> {{$parking->dateout}} </td>
+                                <td> {{$parking->duration}} </td>
+                                <td>{{number_format($parking->cost, 0, '.', ',')}}</td>
+                                
+                               
                                 <td>
-                                    {{ dateFormat($parking->entry_date) }} <br>
-                                    {{ timeFormat($parking->entry_time) }}
-
-                                </td>
-                                <td>
-                                    @if(!empty($parking->exit_date))
-                                        {{ dateFormat($parking->exit_date) }} <br>
-                                        {{ timeFormat($parking->exit_time) }}
+                                    @if($parking->alreadyout=='x')
+                                        <span class="badge badge-danger">Out</span>
                                     @else
-                                        -
+                                        <span class="badge badge-success">Filled</span>
                                     @endif
                                 </td>
                                 <td>
-                                    @if($parking->payment_status==0)
-                                        <span class="badge badge-danger">{{\App\Models\Parking::$paymentStatus[$parking->payment_status]}}</span>
+                                    @if($parking->paymentby!= NULL)
+                                        <span class="badge badge-danger">{{$parking->paymentby}}</span>
                                     @else
-                                        <span class="badge badge-success">{{\App\Models\Parking::$paymentStatus[$parking->payment_status]}}</span>
+                                        <span class="badge badge-success">{{$parking->paymentby}}</span>
                                     @endif
                                 </td>
-                                <td>
-                                    @if($parking->status==0)
-                                        <span class="badge badge-danger">{{\App\Models\Parking::$status[$parking->status]}}</span>
-                                    @else
-                                        <span class="badge badge-success">{{\App\Models\Parking::$status[$parking->status]}}</span>
-                                    @endif
-                                </td>
-                                @if(Gate::check('edit parking') ||  Gate::check('delete parking') ||  Gate::check('show parking'))
-                                    <td class="text-right">
-                                        <div class="cart-action">
-                                            {!! Form::open(['method' => 'DELETE', 'route' => ['parking.destroy', $parking->id]]) !!}
-                                            @if(Gate::check('show parking') )
-                                                <a class="text-warning" href="{{ route('parking.show',\Illuminate\Support\Facades\Crypt::encrypt($parking->id)) }}" data-bs-toggle="tooltip" data-bs-original-title="{{__('Details')}}"> <i data-feather="eye"></i></a>
-                                            @endcan
-                                            @if(Gate::check('edit parking') )
-                                                <a class="text-success customModal" data-bs-toggle="tooltip"
-                                                   data-bs-original-title="{{__('Edit')}}" data-size="lg" href="#"
-                                                   data-url="{{ route('parking.edit',$parking->id) }}"
-                                                   data-title="{{__('Edit Parking')}}"> <i data-feather="edit"></i></a>
-                                            @endcan
-                                            @if( Gate::check('delete parking'))
-                                                <a class=" text-danger confirm_dialog" data-bs-toggle="tooltip"
-                                                   data-bs-original-title="{{__('Detete')}}" href="#"> <i
-                                                        data-feather="trash-2"></i></a>
-                                            @endcan
-                                            {!! Form::close() !!}
-                                        </div>
-                                    </td>
-                                @endif
+                              
                             </tr>
                         @endforeach
                         </tbody>

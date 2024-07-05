@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Parking;
+use App\Models\Transaction;
 use App\Models\ParkingSlot;
 use App\Models\ParkingZone;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ class ParkingController extends Controller
     public function index()
     {
         if (\Auth::user()->can('manage parking')) {
-            $parkings = Parking::where('parent_id', '=', parentId())->get();
+            $parkings = Transaction::where('statusparking', '=', 'Casual')->orderBy('dateout', 'desc')->get();
             return view('parking.index', compact('parkings'));
         } else {
             return redirect()->back()->with('error', __('Permission denied.'));
@@ -210,7 +211,7 @@ class ParkingController extends Controller
     public function parkedVehicle()
     {
         if (\Auth::user()->can('manage parking')) {
-            $parkings = Parking::where('parent_id', '=', parentId())->where('status', 0)->get();
+            $parkings = Transaction::whereNull('alreadyout')->where('statusparking', 'Casual')->get();
             return view('parking.parked_list', compact('parkings'));
         } else {
             return redirect()->back()->with('error', __('Permission denied.'));

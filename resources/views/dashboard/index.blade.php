@@ -17,11 +17,11 @@
         <div class="col-xxl-3 col-sm-6 cdx-xxl-50">
             <div class="card sale-revenue">
                 <div class="card-header">
-                    <h4>{{__('Total Parking Zone')}}</h4>
+                    <h4>{{__('Mobil In / Mobil Out')}}</h4>
                 </div>
-                <div class="card-body progressCounter">
+                <div class="card-body">
                     <h2>
-                        <span class="count">{{$result['totalZone']}}</span>
+                        <span class="count">{{$result['totalmobil']}} / {{$result['totaloutmobil']}}</span>
                     </h2>
                 </div>
             </div>
@@ -29,11 +29,11 @@
         <div class="col-xxl-3 col-sm-6 cdx-xxl-50">
             <div class="card sale-revenue">
                 <div class="card-header">
-                    <h4>{{__('Total Slot')}}</h4>
+                    <h4>{{__('Motor In')}} / {{__('Motor Out')}}</h4>
                 </div>
-                <div class="card-body progressCounter">
+                <div class="card-body ">
                     <h2>
-                        <span class="count">{{$result['totalSlot']}}</span>
+                        <span class="count">{{$result['totalmotor']}} / {{$result['totalout']}}</span>
                     </h2>
                 </div>
             </div>
@@ -42,11 +42,50 @@
         <div class="col-xxl-3 col-sm-6 cdx-xxl-50">
             <div class="card sale-revenue">
                 <div class="card-header">
-                    <h4>{{__('Available Slot')}}</h4>
+                    <h4>{{__('Member Mobil')}}</h4>
                 </div>
                 <div class="card-body progressCounter">
                     <h2>
-                        <span class="count">{{$result['availableSlot']}}</span>
+                        <span class="count">{{$result['totalout']}}</span>
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xxl-3 col-sm-6 cdx-xxl-50">
+            <div class="card sale-revenue">
+                <div class="card-header">
+                    <h4>{{__('Member Motor')}}</h4>
+                </div>
+                <div class="card-body progressCounter">
+                    <h2>
+                        <span class="count">{{$result['totalout']}}</span>
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xxl-3 col-sm-6 cdx-xxl-50">
+            <div class="card sale-revenue">
+                <div class="card-header">
+                    <h4>{{__('Hotel Compliment')}}</h4>
+                </div>
+                <div class="card-body progressCounter">
+                    <h2>
+                        <span class="count">{{$result['totalout']}}</span>
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xxl-3 col-sm-6 cdx-xxl-50">
+            <div class="card sale-revenue">
+                <div class="card-header">
+                    <h4>{{__('Member Register')}}</h4>
+                </div>
+                <div class="card-body progressCounter">
+                    <h2>
+                        <span class="count">{{$result['totalout']}}</span>
                     </h2>
                 </div>
             </div>
@@ -57,7 +96,7 @@
                 <div class="card-header">
                     <h4>{{__('Today Income')}}</h4>
                 </div>
-                <div class="card-body progressCounter">
+                <div class="card-body">
                     <h2>
                         <span class="count">{{$result['todayIncome']}}</span>
                     </h2>
@@ -67,11 +106,59 @@
         <div class="col-xxl-3 col-sm-6 cdx-xxl-50">
             <div class="card sale-revenue">
                 <div class="card-header">
-                    <h4>{{__('Montly Income')}}</h4>
+                    <h4>{{__('Monthly Income')}}</h4>
                 </div>
-                <div class="card-body progressCounter">
+                <div class="card-body">
                     <h2>
-                        <span class="count">{{$result['monthlyIncome']}}</span>
+                        <span class="count">{{$result['monthlyincome']}}</span>
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-xxl-3 col-sm-6 cdx-xxl-50">
+            <div class="card sale-revenue">
+                <div class="card-header">
+                    <h4>{{__('BCA Income')}}</h4>
+                </div>
+                <div class="card-body">
+                    <h2>
+                        <span class="count">{{$result['bca']}}</span>
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-xxl-3 col-sm-6 cdx-xxl-50">
+            <div class="card sale-revenue">
+                <div class="card-header">
+                    <h4>{{__('Mandiri Income')}}</h4>
+                </div>
+                <div class="card-body">
+                    <h2>
+                        <span class="count">{{$result['mandiri']}}</span>
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-xxl-3 col-sm-6 cdx-xxl-50">
+            <div class="card sale-revenue">
+                <div class="card-header">
+                    <h4>{{__('BRI Income')}}</h4>
+                </div>
+                <div class="card-body">
+                    <h2>
+                        <span class="count">{{$result['bri']}}</span>
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-xxl-3 col-sm-6 cdx-xxl-50">
+            <div class="card sale-revenue">
+                <div class="card-header">
+                    <h4>{{__('BNI Income')}}</h4>
+                </div>
+                <div class="card-body">
+                    <h2>
+                        <span class="count">{{$result['bni']}}</span>
                     </h2>
                 </div>
             </div>
