@@ -1,96 +1,90 @@
-{{Form::model($rfidVehicle, array('route' => array('rfid-vehicle.update', $rfidVehicle->id), 'method' => 'PUT')) }}
+<?php echo e(Form::model($rfidVehicle, array('route' => array('rfid-vehicle.extend_store', $rfidVehicle->id), 'method' => 'PUT'))); ?>
+
 <div class="modal-body">
     <div class="row">
         <div class="form-group  col-md-6">
-            {{Form::label('name',__('Name'),array('class'=>'form-label'))}}
-            {{Form::text('name',null,array('class'=>'form-control','placeholder'=>__('Enter name')))}}
+            <?php echo e(Form::label('name',__('Name'),array('class'=>'form-label'))); ?>
+
+            <?php echo e(Form::text('name',null,array('class'=>'form-control','placeholder'=>__('Enter name')))); ?>
+
         </div>
         <div class="form-group  col-md-6">
-            {{Form::label('phone_number',__('Phone Number'),array('class'=>'form-label'))}}
-            {{Form::text('phone_number',null,array('class'=>'form-control','placeholder'=>__('Enter phone number')))}}
+            <?php echo e(Form::label('phone_number',__('Phone Number'),array('class'=>'form-label'))); ?>
+
+            <?php echo e(Form::text('phone_number',null,array('class'=>'form-control','placeholder'=>__('Enter phone number')))); ?>
+
         </div>
         <div class="form-group col-md-6">
-            {{Form::label('zone',__('Parking Zone'),array('class'=>'form-label'))}}
-            {{Form::select('zone',$zones,null,array('class'=>'form-control hidesearch','id'=>'zone_id'))}}
+            <?php echo e(Form::label('zone',__('Parking Zone'),array('class'=>'form-label'))); ?>
+
+            <?php echo e(Form::select('zone',$zones,null,array('class'=>'form-control hidesearch','id'=>'zone_id'))); ?>
+
         </div>
         <div class="form-group col-md-6">
-            {{Form::label('vehicle_type',__('Vehicle Type'),array('class'=>'form-label'))}}
-            <input type="hidden" id="edit_type" value="{{$rfidVehicle->type}}">
+            <?php echo e(Form::label('vehicle_type',__('Vehicle Type'),array('class'=>'form-label'))); ?>
+
+            <input type="hidden" id="edit_type" value="<?php echo e($rfidVehicle->type); ?>">
             <div class="vehicle_type_dive">
                 <select class="form-control hidesearch vehicle_type" id="vehicle_type" name="type">
-                    <option value="">{{__('Select Vehicle Type')}}</option>
+                    <option value=""><?php echo e(__('Select Vehicle Type')); ?></option>
                 </select>
             </div>
         </div>
         <div class="form-group col-md-6">
-            {{Form::label('floor',__('Floor'),array('class'=>'form-label'))}}
-            <input type="hidden" id="edit_floor" value="{{$rfidVehicle->floor}}">
+            <?php echo e(Form::label('floor',__('Floor'),array('class'=>'form-label'))); ?>
+
+            <input type="hidden" id="edit_floor" value="<?php echo e($rfidVehicle->floor); ?>">
             <div class="floor_dive">
                 <select class="form-control hidesearch floor" id="floor_id" name="floor">
-                    <option value="">{{__('Select Floor')}}</option>
+                    <option value=""><?php echo e(__('Select Floor')); ?></option>
                 </select>
             </div>
         </div>
         <div class="form-group col-md-6">
-            {{Form::label('slot',__('Slot'),array('class'=>'form-label'))}}
-            <input type="hidden" id="edit_slot" value="{{$rfidVehicle->slot}}">
+            <?php echo e(Form::label('slot',__('Slot'),array('class'=>'form-label'))); ?>
+
+            <input type="hidden" id="edit_slot" value="<?php echo e($rfidVehicle->slot); ?>">
             <div class="slot_dive">
                 <select class="form-control hidesearch slot" id="slot" name="slot">
-                    @foreach($slots as $k=>$slot)
-                        <option value="{{$k}}" {{$k==$rfidVehicle->slot?'selected':''}}>{{$slot}}</option>
-                    @endforeach
+                    <?php $__currentLoopData = $slots; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k=>$slot): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <option value="<?php echo e($k); ?>" <?php echo e($k==$rfidVehicle->slot?'selected':''); ?>><?php echo e($slot); ?></option>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </select>
             </div>
         </div>
         <div class="form-group  col-md-6">
-            {{Form::label('vehicle_no',__('Vehicle Number'),array('class'=>'form-label'))}}
-            {{Form::text('vehicle_no',null,array('class'=>'form-control','placeholder'=>__('Enter vehicle number')))}}
+            <?php echo e(Form::label('vehicle_no',__('Vehicle Number'),array('class'=>'form-label'))); ?>
+
+            <?php echo e(Form::text('vehicle_no',null,array('class'=>'form-control','placeholder'=>__('Enter vehicle number')))); ?>
+
         </div>
         <div class="form-group  col-md-6">
-            {{Form::label('rfid_no',__('RFID Number'),array('class'=>'form-label'))}}
-            {{Form::text('rfid_no',null,array('class'=>'form-control','placeholder'=>__('Enter RFID number')))}}
-        </div>
-        <div class="form-group  col-md-6">
-            {{Form::label('company_name',__('Company Name'),array('class'=>'form-label'))}}
-            {{Form::text('company_name',null,array('class'=>'form-control','placeholder'=>__('Enter Company Name')))}}
-        </div>
-        <div class="form-group col-md-6">
-            {{Form::label('membertype',__('Member Type'),array('class'=>'form-label'))}}
-            {{Form::select('membertype',$membertypes,null,array('class'=>'form-control hidesearch','id'=>'member_type'))}}
-        </div>
-        <div class="form-group  col-md-6">
-            {{Form::label('vehicle_no',__('Vehicle Number'),array('class'=>'form-label'))}}
-            {{Form::text('vehicle_no',null,array('class'=>'form-control','placeholder'=>__('Enter vehicle number')))}}
-        </div>
-        <div class="form-group  col-md-6">
-            {{Form::label('rfid_no',__('RFID Number'),array('class'=>'form-label'))}}
-            {{Form::text('rfid_no',null,array('class'=>'form-control','placeholder'=>__('Enter RFID number')))}}
-        </div>
-        <div class="form-group  col-md-6">
-            {{Form::label('start_date',__('Start Date'),array('class'=>'form-label'))}}
-            {{Form::date('start_date',null,array('class'=>'form-control'))}}
-        </div>
-        <div class="form-group  col-md-6">
-            {{Form::label('end_date',__('End Date'),array('class'=>'form-label'))}}
-            {{Form::date('end_date',null,array('class'=>'form-control'))}}
+            <?php echo e(Form::label('rfid_no',__('RFID Number'),array('class'=>'form-label'))); ?>
+
+            <?php echo e(Form::text('rfid_no',null,array('class'=>'form-control','placeholder'=>__('Enter RFID number')))); ?>
+
         </div>
         <div class="form-group  col-md-12">
-            {{Form::label('notes',__('Notes'),array('class'=>'form-label'))}}
-            {{Form::textarea('notes',null,array('class'=>'form-control','placeholder'=>__('Enter notes'),'rows'=>2))}}
+            <?php echo e(Form::label('notes',__('Notes'),array('class'=>'form-label'))); ?>
+
+            <?php echo e(Form::textarea('notes',null,array('class'=>'form-control','placeholder'=>__('Enter notes'),'rows'=>2))); ?>
+
         </div>
     </div>
 </div>
 <div class="modal-footer">
-    <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">{{__('Close')}}</button>
-    {{Form::submit(__('Update'),array('class'=>'btn btn-primary btn-rounded'))}}
+    <button class="btn btn-secondary" type="button" data-bs-dismiss="modal"><?php echo e(__('Close')); ?></button>
+    <?php echo e(Form::submit(__('Update'),array('class'=>'btn btn-primary btn-rounded'))); ?>
+
 </div>
-{{ Form::close() }}
+<?php echo e(Form::close()); ?>
+
 <script>
 
     $('#zone_id').on('change', function () {
         "use strict";
         var zone_id = $(this).val();
-        var url = '{{ route("zone.type", ":id") }}';
+        var url = '<?php echo e(route("zone.type", ":id")); ?>';
         url = url.replace(':id', zone_id);
         $.ajax({
             url: url,
@@ -125,7 +119,7 @@
     $('#zone_id').on('change', function () {
         "use strict";
         var zone_id = $(this).val();
-        var url = '{{ route("zone.floor", ":id") }}';
+        var url = '<?php echo e(route("zone.floor", ":id")); ?>';
         url = url.replace(':id', zone_id);
         $.ajax({
             url: url,
@@ -164,7 +158,7 @@
         var zone_id = $('#zone_id').val();
         var type_id = $('#vehicle_type').val();
 
-        var url = '{{ route("zone.floor.slot", [":floor_id",":zone_id",":type_id"]) }}';
+        var url = '<?php echo e(route("zone.floor.slot", [":floor_id",":zone_id",":type_id"])); ?>';
         url = url.replace(':floor_id', floor_id);
         url = url.replace(':zone_id', zone_id);
         url = url.replace(':type_id', type_id);
@@ -201,3 +195,4 @@
 
 </script>
 
+<?php /**PATH /Users/user/parkingsystem/resources/views/rfid_vehicle/extend.blade.php ENDPATH**/ ?>

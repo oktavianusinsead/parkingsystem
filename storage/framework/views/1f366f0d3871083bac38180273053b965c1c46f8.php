@@ -64,6 +64,42 @@
             <?php echo e(Form::text('rfid_no',null,array('class'=>'form-control','placeholder'=>__('Enter RFID number')))); ?>
 
         </div>
+        <div class="form-group  col-md-6">
+            <?php echo e(Form::label('company_name',__('Company Name'),array('class'=>'form-label'))); ?>
+
+            <?php echo e(Form::text('company_name',null,array('class'=>'form-control','placeholder'=>__('Enter Company Name')))); ?>
+
+        </div>
+        <div class="form-group col-md-6">
+            <?php echo e(Form::label('membertype',__('Member Type'),array('class'=>'form-label'))); ?>
+
+            <?php echo e(Form::select('membertype',$membertypes,null,array('class'=>'form-control hidesearch','id'=>'member_type'))); ?>
+
+        </div>
+        <div class="form-group  col-md-6">
+            <?php echo e(Form::label('vehicle_no',__('Vehicle Number'),array('class'=>'form-label'))); ?>
+
+            <?php echo e(Form::text('vehicle_no',null,array('class'=>'form-control','placeholder'=>__('Enter vehicle number')))); ?>
+
+        </div>
+        <div class="form-group  col-md-6">
+            <?php echo e(Form::label('rfid_no',__('RFID Number'),array('class'=>'form-label'))); ?>
+
+            <?php echo e(Form::text('rfid_no',null,array('class'=>'form-control','placeholder'=>__('Enter RFID number')))); ?>
+
+        </div>
+        <div class="form-group  col-md-6">
+            <?php echo e(Form::label('start_date',__('Start Date'),array('class'=>'form-label'))); ?>
+
+            <?php echo e(Form::date('start_date',null,array('class'=>'form-control'))); ?>
+
+        </div>
+        <div class="form-group  col-md-6">
+            <?php echo e(Form::label('end_date',__('End Date'),array('class'=>'form-label'))); ?>
+
+            <?php echo e(Form::date('end_date',null,array('class'=>'form-control'))); ?>
+
+        </div>
         <div class="form-group  col-md-12">
             <?php echo e(Form::label('notes',__('Notes'),array('class'=>'form-label'))); ?>
 

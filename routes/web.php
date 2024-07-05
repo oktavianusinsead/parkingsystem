@@ -18,6 +18,7 @@ use App\Http\Controllers\GateController;
 use App\Http\Controllers\ParkingRateController;
 use App\Http\Controllers\ParkingSlotController;
 use App\Http\Controllers\RfidVehicleController;
+use App\Http\Controllers\RfidExtendVehicleController;
 use App\Http\Controllers\ParkingController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\GateTypeController;
@@ -291,6 +292,26 @@ Route::resource('rfid-vehicle', RfidVehicleController::class)->middleware(
     ]
 );
 
+Route::resource('rfid-extend', RfidExtendVehicleController::class)->middleware(
+    [
+        'auth',
+        'XSS',
+    ]
+);
+
+Route::group(
+    [
+        'middleware' => [
+            'auth',
+            'XSS',
+        ],
+    ], function () {
+
+    Route::resource('rfid-vehicle', RfidVehicleController::class);
+    Route::get('rfid-vehicle/extend/{eid}', [RfidVehicleController::class,'extend'])->name('rfid-vehicle.extend');
+   
+});
+
 //-------------------------------Parking-------------------------------------------
 
 
@@ -344,6 +365,13 @@ Route::resource('reporttransaction', TransactionController::class)->middleware(
 );
 
 Route::resource('hotel', HotelController::class)->middleware(
+    [
+        'auth',
+        'XSS',
+    ]
+);
+
+Route::resource('rfidextend', RfidVehicleController::class)->middleware(
     [
         'auth',
         'XSS',

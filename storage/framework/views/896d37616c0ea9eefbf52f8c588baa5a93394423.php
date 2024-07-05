@@ -149,6 +149,15 @@
                         </a>
                     </li>
                 <?php endif; ?>
+
+                <?php if(Gate::check('manage rfid vehicle')): ?>
+                    <li class="menu-item <?php echo e(in_array($routeName,['rfid-extend.index'])?'active':''); ?>">
+                        <a href="<?php echo e(route('rfid-extend.index')); ?>">
+                            <div class="icon-item"><i data-feather="truck"></i></div>
+                            <span><?php echo e(__('RFID Extend')); ?></span>
+                        </a>
+                    </li>
+                <?php endif; ?>
                 <?php if(Gate::check('manage parking')): ?>
                     <li class="menu-item <?php echo e(in_array($routeName,['parking.index','parking.show'])?'active':''); ?>">
                         <a href="<?php echo e(route('parking.index')); ?>">

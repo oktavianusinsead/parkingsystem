@@ -149,6 +149,15 @@
                         </a>
                     </li>
                 @endif
+
+                @if(Gate::check('manage rfid vehicle'))
+                    <li class="menu-item {{in_array($routeName,['rfid-extend.index'])?'active':''}}">
+                        <a href="{{route('rfid-extend.index')}}">
+                            <div class="icon-item"><i data-feather="truck"></i></div>
+                            <span>{{__('RFID Extend')}}</span>
+                        </a>
+                    </li>
+                @endif
                 @if(Gate::check('manage parking'))
                     <li class="menu-item {{in_array($routeName,['parking.index','parking.show'])?'active':''}}">
                         <a href="{{route('parking.index')}}">
