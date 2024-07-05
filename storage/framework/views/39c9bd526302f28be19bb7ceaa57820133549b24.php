@@ -39,7 +39,7 @@
             </div>
         </div>
 
-        <div class="col-xxl-3 col-sm-6 cdx-xxl-50">
+        <!-- <div class="col-xxl-3 col-sm-6 cdx-xxl-50">
             <div class="card sale-revenue">
                 <div class="card-header">
                     <h4><?php echo e(__('Member Mobil')); ?></h4>
@@ -63,7 +63,7 @@
                     </h2>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <div class="col-xxl-3 col-sm-6 cdx-xxl-50">
             <div class="card sale-revenue">
@@ -98,7 +98,7 @@
                 </div>
                 <div class="card-body">
                     <h2>
-                        <span class="count"><?php echo e($result['todayIncome']); ?></span>
+                        <span class="count"><?php echo e(number_format($result['todayIncome'], 0, '.', ',')); ?></span>
                     </h2>
                 </div>
             </div>
@@ -110,7 +110,7 @@
                 </div>
                 <div class="card-body">
                     <h2>
-                        <span class="count"><?php echo e($result['monthlyincome']); ?></span>
+                        <span class="count"><?php echo e(number_format($result['monthlyincome'], 0, '.', ',')); ?></span>
                     </h2>
                 </div>
             </div>
