@@ -174,6 +174,22 @@
                         </a>
                     </li>
                 <?php endif; ?>
+                <?php if(Gate::check('manage parking')): ?>
+                    <li class="menu-item <?php echo e(in_array($routeName,['parked.member.motor'])?'active':''); ?>">
+                        <a href="<?php echo e(route('parked.member.motor')); ?>">
+                            <div class="icon-item"><i data-feather="bycle"></i></div>
+                            <span><?php echo e(__('Parked Member Motor')); ?></span>
+                        </a>
+                    </li>
+                <?php endif; ?>
+                <?php if(Gate::check('manage parking')): ?>
+                    <li class="menu-item <?php echo e(in_array($routeName,['parked.member.mobil'])?'active':''); ?>">
+                        <a href="<?php echo e(route('parked.member.mobil')); ?>">
+                            <div class="icon-item"><i data-feather="car"></i></div>
+                            <span><?php echo e(__('Parked Member Mobil')); ?></span>
+                        </a>
+                    </li>
+                <?php endif; ?>
                 <?php if(Gate::check('manage contact')): ?>
                     <li class="menu-item <?php echo e(in_array($routeName,['contact.index'])?'active':''); ?>">
                         <a href="<?php echo e(route('contact.index')); ?>">

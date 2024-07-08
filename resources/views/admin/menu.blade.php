@@ -174,6 +174,22 @@
                         </a>
                     </li>
                 @endif
+                @if(Gate::check('manage parking'))
+                    <li class="menu-item {{in_array($routeName,['parked.member.motor'])?'active':''}}">
+                        <a href="{{route('parked.member.motor')}}">
+                            <div class="icon-item"><i data-feather="bycle"></i></div>
+                            <span>{{__('Parked Member Motor')}}</span>
+                        </a>
+                    </li>
+                @endif
+                @if(Gate::check('manage parking'))
+                    <li class="menu-item {{in_array($routeName,['parked.member.mobil'])?'active':''}}">
+                        <a href="{{route('parked.member.mobil')}}">
+                            <div class="icon-item"><i data-feather="car"></i></div>
+                            <span>{{__('Parked Member Mobil')}}</span>
+                        </a>
+                    </li>
+                @endif
                 @if(Gate::check('manage contact'))
                     <li class="menu-item {{in_array($routeName,['contact.index'])?'active':''}}">
                         <a href="{{route('contact.index')}}">

@@ -328,6 +328,8 @@ Route::group(
     Route::get('parking/{id}/exit/{amount}', [ParkingController::class,'exitVehicle'])->name('parking.exit.vehicle');
     Route::post('parking/{id}/exit', [ParkingController::class,'exitVehicleData'])->name('exit.vehicle.store');
     Route::get('parked/vehicle', [ParkingController::class,'parkedVehicle'])->name('parked.vehicle');
+    Route::get('parked/member/motor', [ParkingController::class,'memberMotor'])->name('parked.member.motor');
+    Route::get('parked/member/mobil', [ParkingController::class,'memberMobil'])->name('parked.member.mobil');
     Route::get('parking/{id}/thermal/print', [ParkingController::class,'thermalPrint'])->name('parking.thermal.print');
 });
 

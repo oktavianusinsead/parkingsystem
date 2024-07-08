@@ -218,6 +218,26 @@ class ParkingController extends Controller
         }
     }
 
+    public function memberMotor()
+    {
+        if (\Auth::user()->can('manage parking')) {
+            $parkings = Transaction::where('alreadyout','x')->where('statusparking', 'Member')->where('vehicleid', 'Motor')->get();
+            return view('parking.motor_member_list', compact('parkings'));
+        } else {
+            return redirect()->back()->with('error', __('Permission denied.'));
+        }
+    }
+
+    public function memberMobil()
+    {
+        if (\Auth::user()->can('manage parking')) {
+            $parkings = Transaction::where('alreadyout','x')->where('statusparking', 'Member')->where('vehicleid', 'Mobil')->get();
+            return view('parking.mobil_member_list', compact('parkings'));
+        } else {
+            return redirect()->back()->with('error', __('Permission denied.'));
+        }
+    }
+
     public function thermalPrint($id)
     {
         $parking = Parking::find($id);

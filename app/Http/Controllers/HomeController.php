@@ -103,7 +103,18 @@ class HomeController extends Controller
                 $result['monthlyIncome'] = Parking::where('parent_id', parentId())->whereMonth('entry_date',$month)->sum('amount');
                 $result['qty'] = $this->getQty();
                 $result['settings']=settings();
-
+                $result['membermobilout'] =DB::table('transactions')
+                ->whereBetween('dateout', [$startMonth, $endMonth])
+                ->where('alreadyout','x')
+                ->where('statusparking','Member')
+                ->where('vehicleid','Mobil')
+                ->count('transactionid');
+                $result['membermotorin'] =DB::table('transactions')
+                ->whereBetween('dateout', [$startMonth, $endMonth])
+                ->where('statusparking','Member')
+                ->where('vehicleid','Motor')
+                ->where('alreadyout','x')
+                ->count('transactionid');
 
                return view('dashboard.index', compact('result'));
             }
