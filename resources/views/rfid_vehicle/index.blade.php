@@ -56,18 +56,17 @@
                                 <td>{{ $vehicle->start_date }} </td>
                                 <td>{{ $vehicle->end_date }} </td>
                                 <td>{{ $vehicle->status }} </td>
-                                @if(Gate::check('edit rfid vehicle') ||  Gate::check('delete rfid vehicle'))
-                                    <td class="text-right">
+                                   <td class="text-right">
                                         <div class="cart-action">
                                             {!! Form::open(['method' => 'DELETE', 'route' => ['rfid-vehicle.destroy', $vehicle->id]]) !!}
 
                                             
-                                            @if(Gate::check('edit rfid vehicle') )
+                                            
                                                 <a class="text-success customModal" data-bs-toggle="tooltip"
                                                    data-bs-original-title="{{__('Edit')}}" data-size="lg" href="#"
                                                    data-url="{{ route('rfid-vehicle.edit',$vehicle->id) }}"
                                                    data-title="{{__('Edit RFID Vehicle')}}"> <i data-feather="edit"></i></a>
-                                            @endcan
+                                            
                                             @if( Gate::check('delete rfid vehicle'))
                                                 <a class=" text-danger confirm_dialog" data-bs-toggle="tooltip"
                                                    data-bs-original-title="{{__('Detete')}}" href="#"> <i
@@ -76,7 +75,7 @@
                                             {!! Form::close() !!}
                                         </div>
                                     </td>
-                                @endif
+                               
                             </tr>
                         @endforeach
                         </tbody>
