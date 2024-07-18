@@ -212,18 +212,34 @@
             <li class="cdxmenu-title">
                 <h5>{{__('Report')}}</h5>
             </li>
-            <li class="menu-item {{in_array($routeName,['report.index',''])?'active':''}}">
-                <a href="{{route('report.index')}}">
+            <li class="menu-item {{in_array($routeName,['reportsummary.index',''])?'active':''}}">
+                <a href="{{route('reportsummary.index')}}">
                     <div class="icon-item"><i data-feather="book"></i></div>
                     <span>{{__('Report Settlement')}}</span>
                 </a>
             </li>
-            <li class="menu-item {{in_array($routeName,['report.index',''])?'active':''}}">
-                <a href="{{route('report.index')}}">
+            <li class="menu-item {{in_array($routeName,['report.summary.qty',''])?'active':''}}">
+                <a href="{{route('report.summary.qty')}}">
                     <div class="icon-item"><i data-feather="book"></i></div>
-                    <span>{{__('Report Transaction')}}</span>
+                    <span>{{__('Report Summary Qty')}}</span>
                 </a>
             </li>
+            
+
+            <li class="menu-item {{in_array($routeName,['reportsummary.index',''])?'active':''}}">
+                <a href="{{route('reportsummary.index')}}">
+                    <div class="icon-item"><i data-feather="book"></i></div>
+                    <span>{{__('Report Summary Amount')}}</span>
+                </a>
+            </li>
+            <li class="menu-item {{in_array($routeName,['reportdaily.index',''])?'active':''}}">
+                <a href="{{route('reportdaily.index')}}">
+                    <div class="icon-item"><i data-feather="book"></i></div>
+                    <span>{{__('Report Harian')}}</span>
+                </a>
+            </li>
+            
+           
 
             @if( Gate::check('manage parking zone') || Gate::check('manage gatetype') || Gate::check('manage vehicle_type') || Gate::check('manage floor'))
                 <li class="cdxmenu-title">

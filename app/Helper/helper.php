@@ -382,3 +382,20 @@ if (!function_exists('setup')) {
         return $setupPath;
     }
 }
+
+if (!function_exists('format_duration')) {
+    function format_duration($duration)
+    {
+        // Explode the input string into its components
+        list($days, $time) = explode(' ', $duration);
+        list($hours, $minutes, $seconds) = explode(':', $time);
+
+        // Format the duration
+        return sprintf('%d day%s %d hour%s %d minute%s %d second%s',
+            $days, $days > 1 ? 's' : '',
+            $hours, $hours > 1 ? 's' : '',
+            $minutes, $minutes > 1 ? 's' : '',
+            $seconds, $seconds > 1 ? 's' : ''
+        );
+    }
+}

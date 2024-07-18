@@ -106,7 +106,7 @@ class RfidVehicleController extends Controller
 
     public function update(Request $request, RfidVehicle $rfidVehicle)
     {
-        if (\Auth::user()->can('edit rfid vehicle')) {
+       // if (\Auth::user()->can('edit rfid vehicle')) {
             $validator = \Validator::make(
                 $request->all(), [
                     'zone' => 'required',
@@ -139,9 +139,9 @@ class RfidVehicleController extends Controller
 
             return redirect()->back()->with('success', __('RFID vehicle successfully updated.'));
 
-        } else {
-            return redirect()->back()->with('error', __('Permission denied.'));
-        }
+        // } else {
+        //     return redirect()->back()->with('error', __('Permission denied.'));
+        // }
     }
 
     public function extend_store(Request $request, RfidVehicle $rfidVehicle)

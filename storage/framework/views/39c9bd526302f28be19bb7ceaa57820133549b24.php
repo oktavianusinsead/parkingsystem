@@ -14,6 +14,7 @@
 ?>
 <?php $__env->startSection('content'); ?>
     <div class="row">
+    <?php if(\Auth::user()->type=='super admin' || \Auth::user()->type=='owner'): ?>
         <div class="col-xxl-3 col-sm-6 cdx-xxl-50">
             <div class="card sale-revenue">
                 <div class="card-header">
@@ -212,6 +213,20 @@
         </div>
 
     </div>
+    <?php else: ?>
+    <div class="col-xxl-3 col-sm-6 cdx-xxl-50">
+            <div class="card sale-revenue">
+                <div class="card-header">
+                    <h4><?php echo e(__('Hotel Compliment')); ?></h4>
+                </div>
+                <div class="card-body progressCounter">
+                    <h2>
+                        <span class="count"><?php echo e($result['totalout']); ?></span>
+                    </h2>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
 
 <?php $__env->stopSection(); ?>
 

@@ -27,4 +27,14 @@ class ReportController extends Controller
         // }
         return view('report.report');
     }
+    public function reportsummary()
+    {
+        // if (\Auth::user()->can('manage report') ) {
+        //     $report = Transaction::where('parent_id', '=', parentId())->get();
+           
+        // } else {
+        //     return redirect()->back()->with('error', __('Permission denied.'));
+        // }
+        return view('report.reportsummary');
+    }
 }

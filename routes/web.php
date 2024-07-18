@@ -24,6 +24,9 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\GateTypeController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\HotelController;
+use App\Http\Controllers\ReportSummaryController;
+use App\Http\Controllers\ReportDailyController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -110,32 +113,32 @@ Route::group(
         ],
     ], function (){
     Route::get('settings/account', [SettingController::class,'account'])->name('setting.account');
-    Route::post('settings/account', [SettingController::class,'accountData'])->name('setting.account');
+    Route::post('settings/account', [SettingController::class,'accountData'])->name('setting.accountsave');
     Route::delete('settings/account/delete', [SettingController::class,'accountDelete'])->name('setting.account.delete');
 
     Route::get('settings/password', [SettingController::class,'password'])->name('setting.password');
-    Route::post('settings/password', [SettingController::class,'passwordData'])->name('setting.password');
+    Route::post('settings/password', [SettingController::class,'passwordData'])->name('setting.passwordsave');
 
     Route::get('settings/general', [SettingController::class,'general'])->name('setting.general');
-    Route::post('settings/general', [SettingController::class,'generalData'])->name('setting.general');
+    Route::post('settings/general', [SettingController::class,'generalData'])->name('setting.generalsave');
 
     Route::get('settings/smtp', [SettingController::class,'smtp'])->name('setting.smtp');
-    Route::post('settings/smtp', [SettingController::class,'smtpData'])->name('setting.smtp');
+    Route::post('settings/smtp', [SettingController::class,'smtpData'])->name('setting.smtpsave');
 
     Route::get('settings/payment', [SettingController::class,'payment'])->name('setting.payment');
-    Route::post('settings/payment', [SettingController::class,'paymentData'])->name('setting.payment');
+    Route::post('settings/payment', [SettingController::class,'paymentData'])->name('setting.paymentsave');
 
     Route::get('settings/company', [SettingController::class,'company'])->name('setting.company');
-    Route::post('settings/company', [SettingController::class,'companyData'])->name('setting.company');
+    Route::post('settings/company', [SettingController::class,'companyData'])->name('setting.companysave');
 
     Route::get('language/{lang}', [SettingController::class,'lanquageChange'])->name('language.change');
     Route::post('theme/settings', [SettingController::class,'themeSettings'])->name('theme.settings');
 
     Route::get('settings/site-seo', [SettingController::class,'siteSEO'])->name('setting.site.seo');
-    Route::post('settings/site-seo', [SettingController::class,'siteSEOData'])->name('setting.site.seo');
+    Route::post('settings/site-seo', [SettingController::class,'siteSEOData'])->name('setting.site.seosave');
 
     Route::get('settings/google-recaptcha', [SettingController::class,'googleRecaptcha'])->name('setting.google.recaptcha');
-    Route::post('settings/google-recaptcha', [SettingController::class,'googleRecaptchaData'])->name('setting.google.recaptcha');
+    Route::post('settings/google-recaptcha', [SettingController::class,'googleRecaptchaData'])->name('setting.google.recaptchasave');
 }
 );
 
@@ -352,19 +355,58 @@ Route::group(
 
 //-------------------------------Report-------------------------------------------
 
-Route::resource('report', ReportController::class)->middleware(
+
+
+Route::group(
     [
-        'auth',
-        'XSS',
-    ]
+        'middleware' => [
+            'auth',
+            'XSS',
+        ],
+    ], function (){
+
+    Route::resource('reportsummary', ReportSummaryController::class);
+    Route::get('/report-summary', [ReportSummaryController::class, 'getPaymentReport'])->name('report.summary');
+    Route::get('/report-qty-summary', [ReportSummaryController::class, 'getQtyReport'])->name('report.summary.qty');
+     
+}
 );
 
+Route::group(
+    [
+        'middleware' => [
+            'auth',
+            'XSS',
+        ],
+    ], function (){
+
+    
+    Route::get('/reportdaily-summary', [ReportDailyController::class, 'getPaymentReport'])->name('reportdaily.index');
+     
+}
+);
+
+// Route::group(
+//     [
+//         'middleware' => [
+//             'auth',
+//             'XSS',
+//         ],
+//     ], function (){
+
+//     Route::get('reportsummary/', [ReportSummaryController::class, 'index'])->name('report.index');
+//     Route::get('report/reportsummary', [ReportSummaryController::class, 'reportsummary'])->name('report.reportsummary');
+     
+// }
+// );
 Route::resource('reporttransaction', TransactionController::class)->middleware(
     [
         'auth',
         'XSS',
     ]
 );
+
+
 
 Route::resource('hotel', HotelController::class)->middleware(
     [

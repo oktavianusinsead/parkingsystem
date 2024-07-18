@@ -56,29 +56,20 @@
                                 <td><?php echo e($vehicle->start_date); ?> </td>
                                 <td><?php echo e($vehicle->end_date); ?> </td>
                                 <td><?php echo e($vehicle->status); ?> </td>
-                                <?php if(Gate::check('edit rfid vehicle') ||  Gate::check('delete rfid vehicle')): ?>
-                                    <td class="text-right">
+                                   <td class="text-right">
+                                   
                                         <div class="cart-action">
-                                            <?php echo Form::open(['method' => 'DELETE', 'route' => ['rfid-vehicle.destroy', $vehicle->id]]); ?>
-
-
+                                           
                                             
-                                            <?php if(Gate::check('edit rfid vehicle') ): ?>
                                                 <a class="text-success customModal" data-bs-toggle="tooltip"
-                                                   data-bs-original-title="<?php echo e(__('Edit')); ?>" data-size="lg" href="#"
-                                                   data-url="<?php echo e(route('rfid-vehicle.edit',$vehicle->id)); ?>"
-                                                   data-title="<?php echo e(__('Edit RFID Vehicle')); ?>"> <i data-feather="edit"></i></a>
-                                            <?php endif; ?>
-                                            <?php if( Gate::check('delete rfid vehicle')): ?>
-                                                <a class=" text-danger confirm_dialog" data-bs-toggle="tooltip"
-                                                   data-bs-original-title="<?php echo e(__('Detete')); ?>" href="#"> <i
-                                                        data-feather="trash-2"></i></a>
-                                            <?php endif; ?>
-                                            <?php echo Form::close(); ?>
-
+                                                   
+                                                  
+                                                  >EDIT</a>
+                                            
+                                          
                                         </div>
                                     </td>
-                                <?php endif; ?>
+                               
                             </tr>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </tbody>

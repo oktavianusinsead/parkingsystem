@@ -30,7 +30,7 @@
                                 <h4>{{$contact->name}}  </h4>
                                 <h6 class="text-light">{{$contact->email}}</h6>
                             </div>
-                            @if(Gate::check('edit contact') || Gate::check('delete contact') || \Auth::user()->type=='super admin')
+                            @if(Gate::check('edit contact') || Gate::check('delete contact') || \Auth::user()->type=='owner' || \Auth::user()->type=='super admin')
                                 <div class="user-setting">
                                     <div class="action-menu">
                                         <div class="action-toggle"><i data-feather="more-vertical"></i></div>

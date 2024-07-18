@@ -212,18 +212,34 @@
             <li class="cdxmenu-title">
                 <h5><?php echo e(__('Report')); ?></h5>
             </li>
-            <li class="menu-item <?php echo e(in_array($routeName,['report.index',''])?'active':''); ?>">
-                <a href="<?php echo e(route('report.index')); ?>">
+            <li class="menu-item <?php echo e(in_array($routeName,['reportsummary.index',''])?'active':''); ?>">
+                <a href="<?php echo e(route('reportsummary.index')); ?>">
                     <div class="icon-item"><i data-feather="book"></i></div>
                     <span><?php echo e(__('Report Settlement')); ?></span>
                 </a>
             </li>
-            <li class="menu-item <?php echo e(in_array($routeName,['report.index',''])?'active':''); ?>">
-                <a href="<?php echo e(route('report.index')); ?>">
+            <li class="menu-item <?php echo e(in_array($routeName,['report.summary.qty',''])?'active':''); ?>">
+                <a href="<?php echo e(route('report.summary.qty')); ?>">
                     <div class="icon-item"><i data-feather="book"></i></div>
-                    <span><?php echo e(__('Report Transaction')); ?></span>
+                    <span><?php echo e(__('Report Summary Qty')); ?></span>
                 </a>
             </li>
+            
+
+            <li class="menu-item <?php echo e(in_array($routeName,['reportsummary.index',''])?'active':''); ?>">
+                <a href="<?php echo e(route('reportsummary.index')); ?>">
+                    <div class="icon-item"><i data-feather="book"></i></div>
+                    <span><?php echo e(__('Report Summary Amount')); ?></span>
+                </a>
+            </li>
+            <li class="menu-item <?php echo e(in_array($routeName,['reportdaily.index',''])?'active':''); ?>">
+                <a href="<?php echo e(route('reportdaily.index')); ?>">
+                    <div class="icon-item"><i data-feather="book"></i></div>
+                    <span><?php echo e(__('Report Harian')); ?></span>
+                </a>
+            </li>
+            
+           
 
             <?php if( Gate::check('manage parking zone') || Gate::check('manage gatetype') || Gate::check('manage vehicle_type') || Gate::check('manage floor')): ?>
                 <li class="cdxmenu-title">
