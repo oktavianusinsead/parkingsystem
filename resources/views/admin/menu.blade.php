@@ -209,6 +209,8 @@
                 @endif
 
             @endif
+
+            @if(\Auth::user()->type=='super admin' || \Auth::user()->type=='owner')
             <li class="cdxmenu-title">
                 <h5>{{__('Report')}}</h5>
             </li>
@@ -238,7 +240,7 @@
                     <span>{{__('Report Harian')}}</span>
                 </a>
             </li>
-            
+            @endif
            
 
             @if( Gate::check('manage parking zone') || Gate::check('manage gatetype') || Gate::check('manage vehicle_type') || Gate::check('manage floor'))

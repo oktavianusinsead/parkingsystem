@@ -209,6 +209,8 @@
                 <?php endif; ?>
 
             <?php endif; ?>
+
+            <?php if(\Auth::user()->type=='super admin' || \Auth::user()->type=='owner'): ?>
             <li class="cdxmenu-title">
                 <h5><?php echo e(__('Report')); ?></h5>
             </li>
@@ -238,7 +240,7 @@
                     <span><?php echo e(__('Report Harian')); ?></span>
                 </a>
             </li>
-            
+            <?php endif; ?>
            
 
             <?php if( Gate::check('manage parking zone') || Gate::check('manage gatetype') || Gate::check('manage vehicle_type') || Gate::check('manage floor')): ?>
