@@ -26,6 +26,8 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\ReportSummaryController;
 use App\Http\Controllers\ReportDailyController;
+use App\Http\Controllers\ReportDailyHotelController;
+
 
 
 /*
@@ -382,6 +384,20 @@ Route::group(
 
     
     Route::get('/reportdaily-summary', [ReportDailyController::class, 'getPaymentReport'])->name('reportdaily.index');
+     
+}
+);
+
+Route::group(
+    [
+        'middleware' => [
+            'auth',
+            'XSS',
+        ],
+    ], function (){
+
+    
+    Route::get('/reportdailyhotel-summary', [ReportDailyHotelController::class, 'getPaymentHotelReport'])->name('reportdailyhotel.index');
      
 }
 );

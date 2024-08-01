@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Hotel;
 use App\Models\ParkingZone;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HotelController extends Controller
 {
@@ -41,7 +42,7 @@ class HotelController extends Controller
             $hotel->plat_no = $request->plat_no;
             $hotel->uidno = $request->uidno;
             $hotel->status = $request->status;
-            
+            $hotel->user_id = Auth::user();
             $hotel->parent_id = parentId();
             $hotel->save();
 

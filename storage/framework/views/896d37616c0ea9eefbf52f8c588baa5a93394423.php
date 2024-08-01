@@ -240,6 +240,12 @@
                     <span><?php echo e(__('Report Harian')); ?></span>
                 </a>
             </li>
+            <li class="menu-item <?php echo e(in_array($routeName,['reportdailyhotel.index',''])?'active':''); ?>">
+                <a href="<?php echo e(route('reportdailyhotel.index')); ?>">
+                    <div class="icon-item"><i data-feather="book"></i></div>
+                    <span><?php echo e(__('Report Hotel')); ?></span>
+                </a>
+            </li>
             <?php endif; ?>
            
 

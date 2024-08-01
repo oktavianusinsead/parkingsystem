@@ -48,7 +48,10 @@
                         @foreach($vehicles as $vehicle)
 
                             <tr role="row">
-                                <td>{{$vehicle->rfid_no}}</td>
+                                <td> <a class="text-success customModal" data-bs-toggle="tooltip"
+                                                   data-bs-original-title="{{__('Edit')}}" data-size="lg" href="#"
+                                                   data-url="{{ route('rfid-vehicle.edit',$vehicle->id) }}"
+                                                   data-title="{{__('Edit RFID Vehicle')}}">{{$vehicle->rfid_no}}</a></td>
                                 <td>{{$vehicle->vehicle_no}}</td>
                                 <td> {{ !empty($vehicle->types)?$vehicle->types->title:'-' }}   </td>
                                 <td>{{ $vehicle->name }} </td>
@@ -61,10 +64,10 @@
                                         <div class="cart-action">
                                            
                                             
-                                                <a class="text-success customModal" data-bs-toggle="tooltip"
-                                                   
-                                                  
-                                                  >EDIT</a>
+                                        <a class="text-success customModal" data-bs-toggle="tooltip"
+                                                   data-bs-original-title="{{__('Edit')}}" data-size="lg" href="#"
+                                                   data-url="{{ route('rfid-vehicle.edit',$vehicle->id) }}"
+                                                   data-title="{{__('Edit RFID Vehicle')}}"> Edit</a>  
                                             
                                           
                                         </div>

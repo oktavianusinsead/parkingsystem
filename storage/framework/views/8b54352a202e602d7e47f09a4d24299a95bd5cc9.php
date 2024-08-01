@@ -48,7 +48,10 @@
                         <?php $__currentLoopData = $vehicles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $vehicle): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
                             <tr role="row">
-                                <td><?php echo e($vehicle->rfid_no); ?></td>
+                                <td> <a class="text-success customModal" data-bs-toggle="tooltip"
+                                                   data-bs-original-title="<?php echo e(__('Edit')); ?>" data-size="lg" href="#"
+                                                   data-url="<?php echo e(route('rfid-vehicle.edit',$vehicle->id)); ?>"
+                                                   data-title="<?php echo e(__('Edit RFID Vehicle')); ?>"><?php echo e($vehicle->rfid_no); ?></a></td>
                                 <td><?php echo e($vehicle->vehicle_no); ?></td>
                                 <td> <?php echo e(!empty($vehicle->types)?$vehicle->types->title:'-'); ?>   </td>
                                 <td><?php echo e($vehicle->name); ?> </td>
@@ -61,10 +64,10 @@
                                         <div class="cart-action">
                                            
                                             
-                                                <a class="text-success customModal" data-bs-toggle="tooltip"
-                                                   
-                                                  
-                                                  >EDIT</a>
+                                        <a class="text-success customModal" data-bs-toggle="tooltip"
+                                                   data-bs-original-title="<?php echo e(__('Edit')); ?>" data-size="lg" href="#"
+                                                   data-url="<?php echo e(route('rfid-vehicle.edit',$vehicle->id)); ?>"
+                                                   data-title="<?php echo e(__('Edit RFID Vehicle')); ?>"> Edit</a>  
                                             
                                           
                                         </div>

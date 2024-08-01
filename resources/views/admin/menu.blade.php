@@ -240,6 +240,12 @@
                     <span>{{__('Report Harian')}}</span>
                 </a>
             </li>
+            <li class="menu-item {{in_array($routeName,['reportdailyhotel.index',''])?'active':''}}">
+                <a href="{{route('reportdailyhotel.index')}}">
+                    <div class="icon-item"><i data-feather="book"></i></div>
+                    <span>{{__('Report Hotel')}}</span>
+                </a>
+            </li>
             @endif
            
 
